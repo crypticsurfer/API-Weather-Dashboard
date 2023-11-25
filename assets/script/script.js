@@ -85,3 +85,29 @@ function history() {
         createbuttons(storage)
     }
 }
+
+function createbuttons(storage) {
+    let historySection = document.querySelector('#hissection')
+    historySection.innerHTML = ""
+    storage.forEach(function (city) {
+        let cityList = document.createElement("p")
+        cityList.textContent = city
+        cityList.className += "searched-city"
+        historySection.appendChild(cityList)
+
+
+        cityList.addEventListener("click", function (event) {
+            event.preventDefault()
+            let oldCitySearch = cityList.textContent
+            search(oldCitySearch)
+        })
+    })
+}
+
+searchButton.addEventListener("click", ()=>{search(searchEl.value.trim())})
+
+
+function clearText() {
+   let input1 = document.getElementById('searchfield');
+   input1.value = "";
+}
