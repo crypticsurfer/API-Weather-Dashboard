@@ -39,3 +39,33 @@ function search(city) {
 
             let lat = data.coord.lat
             let lon = data.coord.lon
+
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (weekData) {
+                    let weekArray = weekData.list
+                    console.log(weekArray)
+                    let weekSection = document.querySelector('#weeksection')
+                    let weekEl = ""
+                    for (let i = 0; i < 5; i ++) {
+                        const forecastDay = weekArray[i*8]
+                        let dayOfTheWeek = new Date(forecastDay.dt_txt).toLocaleString().split(",")[0]
+                        let iconCode = forecastDay.weather[0].icon
+                        let iconImage = `<img src="http://openweathermap.org/img/wn/${iconCode}.png">`
+                        weekEl += `
+                        <div class='weekcard'>
+                            <p>Date: ${dayOfTheWeek}</p>
+                            <p>${iconImage}</p>
+                            <p>Temp: ${forecastDay.main.temp} °F</p>
+                            <p>Humidity: ${forecastDay.main.humidity} %</p>
+                            <p>Wind Speed: ${forecastDay.wind.speed} MPH</p>
+                        </div>`;
+                        weekSection.innerHTML = weekEl
+                    }
+                })
+        })
+    history()
+    clearText()
+}
