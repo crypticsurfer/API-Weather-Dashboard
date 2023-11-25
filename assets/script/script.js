@@ -69,3 +69,19 @@ function search(city) {
     history()
     clearText()
 }
+
+function history() {
+    let historyValue = searchEl.value.trim()
+    if (historyValue !== "") {
+        let storage = JSON.parse(localStorage.getItem("storage")) || []
+        if (storage.includes(historyValue)) {
+            storage.splice(storage.indexOf(historyValue), 1)
+        }
+        storage.unshift(historyValue)
+        if (storage.length > 10) {
+            storage.pop()
+        }
+        localStorage.setItem("storage", JSON.stringify(storage))
+        createbuttons(storage)
+    }
+}
