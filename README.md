@@ -13,6 +13,7 @@ an app to get the weather data for a city for the next 5 days
 Go to the url to access the page and it should display a page that looks like the image below.
   ## Usage
 Navigate to the search bar and input a city and click search and the weather for the day and the next 5 days should populate. The city searched should show in the history below the search bar.
+![Alt text](<Weather Dashboard capture.PNG>)
   ## License
   * [License](https://opensource.org/license/mit/)
   This app was licensed under MIT license
